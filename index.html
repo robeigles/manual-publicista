@@ -45,11 +45,11 @@
   figure { margin: 14px 0; break-inside: avoid; }
   figure img { display: block; max-width: 100%; height: auto; border: 1px solid var(--linea); border-radius: 6px; }
   figcaption { font-size: 12.5px; color: var(--gris); margin-top: 5px; }
-  .fila { display: flex; gap: 14px; flex-wrap: wrap; align-items: flex-start; }
+  .fila { display: flex; gap: 14px; flex-wrap: wrap; align-items: flex-start; break-inside: avoid; }
   .fila figure { flex: 1 1 0; min-width: 0; margin: 10px 0; }
   .fila.tres figure img { max-height: 430px; width: auto; margin: 0 auto; }
   .fila.dos figure img { max-height: 470px; width: auto; margin: 0 auto; }
-  .funcion { break-inside: avoid-page; margin-top: 22px; }
+  .funcion { margin-top: 22px; }
   .funcion h3 { margin-top: 0; }
   .ficha { display: grid; grid-template-columns: 140px 1fr; gap: 2px 12px; font-size: 13.5px; margin: 6px 0 10px; }
   .ficha dt { color: var(--gris); }
@@ -60,16 +60,33 @@
   .estado.camino { border-style: dashed; color: var(--gris); border-color: var(--gris); }
   .indice ol { columns: 2; column-gap: 28px; }
   .chico { font-size: 12.5px; color: var(--gris); }
+  .pasos { margin: 6px 0 10px; }
+  .simple { background: var(--suave); border-left: 3px solid var(--marca); padding: 10px 14px; margin: 12px 0; }
+  .simple p { margin: 0 0 5px; }
+  .simple p:last-child { margin-bottom: 0; }
+  .sesenta p { margin-bottom: 8px; }
+  .sesenta .cita { margin: 10px 0; }
+  .glosario dl { columns: 2; column-gap: 24px; font-size: 11.8px; line-height: 1.27; margin: 0; }
+  .glosario dl > div { break-inside: avoid; margin-bottom: 3px; }
+  .glosario dt { display: inline; font-weight: 600; }
+  .glosario dt::after { content: ":\00a0"; }
+  .glosario dd { display: inline; margin: 0; }
   @page { size: A4; margin: 16mm 16mm 14mm; }
   @media print {
     body { max-width: none; padding: 0; font-size: 10.5pt; }
     .portada { min-height: 250mm; }
     section.salto { break-before: page; }
     h2, h3 { break-after: avoid; }
+    .fila.tres figure img { max-height: 300px; }
+    .fila.dos figure img { max-height: 320px; }
+    figure[style*="260px"] { max-width: 180px !important; }
+    figure[style*="300px"] { max-width: 210px !important; }
+    figure[style*="520px"] { max-width: 400px !important; }
   }
   @media (max-width: 640px) {
     h1 { font-size: 34px; }
     .indice ol { columns: 1; }
+    .glosario dl { columns: 1; }
     .ficha { grid-template-columns: 1fr; }
     .fila { flex-direction: column; }
   }
@@ -80,15 +97,39 @@
 <div class="portada">
   <div class="marca">Hilo Rojo</div>
   <h1>Manual para <em>el publicista</em></h1>
-  <p class="bajada">Qué hacemos, a quién se lo vendemos, cómo nos vemos hoy y qué te vamos a pedir. Todo en un lugar, y sólo lo que es verdad al 30 de octubre de 2026.</p>
+  <p class="bajada">Qué hacemos, a quién se lo vendemos, cómo nos vemos hoy y qué te vamos a pedir. Escrito para quien nunca ha usado un programa de este tipo. Todo en un lugar, y sólo lo que es verdad al 30 de octubre de 2026.</p>
   <p class="pie">Versión del 30-oct-2026 · Documento de trabajo para quien nos ayuda con la comunicación.<br>
   Las fotos son de una copia de prueba con datos inventados. Las ilustraciones de WhatsApp están marcadas como tales.</p>
 </div>
 
+<section class="salto sesenta">
+  <div class="antetitulo">Si tienes un minuto</div>
+  <h2>Hilo Rojo <em>en 60 segundos</em></h2>
+  <p><strong>Qué es.</strong> Hilo Rojo es una empresa chilena que hace un <strong>asistente para WhatsApp</strong>. Un asistente es un programa de computador que lee los mensajes y los contesta, como lo haría un vendedor.</p>
+  <p><strong>A quién se lo vendemos.</strong> A <strong>distribuidoras y mayoristas</strong> que ya venden por WhatsApp. Son empresas que le compran en cantidad a los fabricantes y le venden a otros negocios. Por ejemplo, la que le vende cloro y papel higiénico a colegios y edificios.</p>
+  <p><strong>El problema.</strong> Un martes a las 21:10 el administrador de un edificio pide 10 bidones de cloro. La vendedora salió a las 18:00 y lo lee al otro día, a las 9:15. Para entonces él ya le compró a otro.</p>
+  <p><strong>Lo que pasa con Hilo Rojo.</strong></p>
+  <ol>
+    <li>El cliente pregunta el precio en el WhatsApp de siempre. No instala nada.</li>
+    <li>El asistente le contesta con los precios de la empresa y arma la <strong>cotización</strong>: el presupuesto con productos, cantidades y total.</li>
+    <li><strong>Un vendedor de la empresa la revisa y la aprueba.</strong> Sin esa aprobación, no sale.</li>
+    <li>El cliente recibe la cotización en el mismo chat.</li>
+  </ol>
+  <p class="cita">Del chat a la cotización, <em>sin cortar el hilo</em>.</p>
+  <table>
+    <tr><th>Estado</th><th>Qué quiere decir</th><th>Qué hay</th></tr>
+    <tr><td><span class="estado">hoy</span></td><td>Funciona y se puede mostrar en una demo, que es una prueba en vivo.</td><td>El asistente de WhatsApp. Como funciones extra, el equipo y sus avisos y la agenda de horas.</td></tr>
+    <tr><td><span class="estado proximo">próximo</span></td><td>Lo estamos construyendo. Todavía no se vende y no tiene fecha.</td><td>El despacho (la ruta del día del reparto) y el inventario (el conteo).</td></tr>
+    <tr><td><span class="estado camino">ya viene luego</span></td><td>Está pensado, pero todavía no se trabaja. Tampoco tiene fecha.</td><td>Avisos con un código QR, entradas con QR, pagar en un punto y retirar en otro, y avisos de cobro.</td></tr>
+  </table>
+  <p><strong>Dónde estamos.</strong> Estamos instalando con las primeras empresas. Todavía no hay clientes que paguen, así que no hay casos que mostrar y no se inventan. El precio no está decidido: ninguna pieza lleva precio. Una pieza es cada cosa que se publica o se entrega, como un folleto o una publicación de Instagram.</p>
+  <p><strong>Qué te pedimos.</strong> Cuatro encargos: identidad visual, canales y campaña, redes sociales y sitio web (sección 10). Si una palabra no se entiende, está en el glosario, al final.</p>
+</section>
+
 <section class="indice salto">
   <h2>Qué hay <em>adentro</em></h2>
   <ol>
-    <li>Hilo Rojo en una página</li>
+    <li>Qué es Hilo Rojo</li>
     <li>Todo lo que hace el asistente, función por función</li>
     <li>A quién le vendemos</li>
     <li>Mercado y competencia</li>
@@ -98,20 +139,32 @@
     <li>Lo que ya existe para comunicar</li>
     <li>Qué no prometer</li>
     <li>Lo que te pedimos</li>
+    <li>Glosario: cada palabra difícil, en simple</li>
   </ol>
   <div class="nota">
-    <strong>Tres palabras que vas a ver.</strong> <em>Asistente</em>: el programa que contesta el WhatsApp de una empresa (delante del cliente decimos «asistente», no «bot»). <em>Consola</em>: la página web, con usuario y clave, donde la empresa ve sus conversaciones y cotizaciones. <em>Cotización</em>: el presupuesto con productos, cantidades y total; no es una factura.
+    <strong>Seis palabras que vas a ver.</strong><br>
+    <em>Asistente</em>: el programa que contesta el WhatsApp de una empresa.<br>
+    <em>Bot</em>: otra palabra para un programa que conversa solo. Delante del cliente decimos «asistente», no «bot».<br>
+    <em>Inteligencia artificial (IA)</em>: programas que entienden lo que la gente escribe o dice y contestan con frases normales. Si alguien escribe «kuanto bale el cloro», entienden que pregunta el precio.<br>
+    <em>Consola</em>: la página web, con usuario y clave, donde la empresa ve sus conversaciones y cotizaciones.<br>
+    <em>Cotización</em>: el presupuesto con productos, cantidades y total. No es una factura.<br>
+    <em>Copia de prueba</em>: una versión del programa, con datos inventados, que usamos para ensayar.
   </div>
   <div class="nota punteada">
-    <strong>Cómo leer los estados.</strong> <span class="estado">hoy</span> funciona y se puede mostrar en una demo. <span class="estado proximo">próximo</span> es lo que estamos construyendo ahora (hoy: el despacho con su ruta del día y el inventario con su conteo); todavía no se vende y no tiene fecha. <span class="estado camino">ya viene luego</span> está pensado pero todavía no se trabaja; tampoco tiene fecha. Hacia afuera no cambia nada: para el cliente, lo que no es «hoy» se dice «todavía no, y sin fecha». En la marca, lo punteado siempre quiere decir «todavía no».
+    <strong>Cómo leer los estados.</strong><br>
+    <span class="estado">hoy</span> funciona y se puede mostrar en una demo.<br>
+    <span class="estado proximo">próximo</span> es lo que estamos construyendo ahora (hoy: el despacho con su ruta del día y el inventario con su conteo). Todavía no se vende y no tiene fecha.<br>
+    <span class="estado camino">ya viene luego</span> está pensado, pero todavía no se trabaja. Tampoco tiene fecha.<br>
+    Hacia afuera no cambia nada: para el cliente, lo que no es «hoy» se dice «todavía no, y sin fecha». En la marca, lo punteado siempre quiere decir «todavía no».
   </div>
 </section>
 
 <section class="salto">
   <div class="antetitulo">1</div>
-  <h2>Hilo Rojo <em>en una página</em></h2>
-  <p><strong>Hilo Rojo SpA</strong> es una empresa chilena de software, constituida en julio de 2026. Hace un asistente que trabaja sobre el WhatsApp que la empresa ya usa: sus clientes escriben al número de siempre y nadie instala nada.</p>
-  <p><strong>Lo que vendemos hoy</strong> es eso, para <strong>distribuidoras y mayoristas que ya venden por WhatsApp</strong>. El cliente pregunta un precio, el asistente le contesta con el catálogo de la empresa y arma la cotización en el mismo chat. Antes de que la cotización salga, <strong>un vendedor de la empresa la revisa y la aprueba</strong>. Ésa es la promesa central: el asistente atiende, pero el precio lo confirma una persona.</p>
+  <h2>Qué es <em>Hilo Rojo</em></h2>
+  <p><strong>Hilo Rojo SpA</strong> es una empresa chilena de software (programas de computador), constituida en julio de 2026. La fundó Rob, a quien vas a ver nombrado en este manual. Hace un asistente que trabaja sobre el WhatsApp que la empresa ya usa: sus clientes escriben al número de siempre y nadie instala nada.</p>
+  <p><strong>Lo que vendemos hoy</strong> es eso, para <strong>distribuidoras y mayoristas que ya venden por WhatsApp</strong>. La sección 3 explica desde cero qué son.</p>
+  <p><strong>Cómo funciona.</strong> El cliente pregunta un precio. El asistente le contesta con el catálogo de la empresa, que es su lista de productos con precios, y arma la cotización en el mismo chat. Antes de que la cotización salga, <strong>un vendedor de la empresa la revisa y la aprueba</strong>. Ésa es la promesa central: el asistente atiende, pero el precio lo confirma una persona.</p>
   <p class="cita">Del chat a la cotización, <em>sin cortar el hilo</em>.</p>
   <table>
     <tr><th>Pieza</th><th>Texto aprobado (decisiones de Rob, 29-oct)</th></tr>
@@ -120,36 +173,44 @@
     <tr><td>Prueba</td><td>Un vendedor tuyo aprueba antes de que salga el PDF.</td></tr>
     <tr><td>Primera línea de cada mensaje a un posible cliente</td><td>Deja de perder pedidos por WhatsApp.</td></tr>
   </table>
-  <p><strong>El problema que resolvemos</strong>, contado como lo vive un dueño: los pedidos llegan por WhatsApp mezclados con saludos, fotos y «¿cuánto vale este otro?»; los atiende una sola persona; cuando esa persona almuerza, se va a las 7 o renuncia, el cliente que escribió a las 10 de la noche le compra a otro.</p>
-  <p><strong>Lo que también hace el mismo asistente:</strong> ordenar la operación interna de la empresa, esté el equipo en terreno, en la bodega, en la oficina o repartiendo: avisos de problemas, anuncios, tareas y consulta de stock. Lo próximo en esa línea es el despacho (la ruta del día del reparto) y el inventario (el conteo); más adelante, avisar por WhatsApp cuando alguien escanea un código QR pegado en un lugar. Lo verás en la sección 2.</p>
+  <p><strong>El problema que resolvemos</strong>, contado como lo vive un dueño. Los pedidos llegan por WhatsApp mezclados con saludos, fotos y «¿cuánto vale este otro?». Los atiende una sola persona. Cuando esa persona almuerza, se va a las 7 o renuncia, el cliente que escribió a las 10 de la noche le compra a otro.</p>
+  <p><strong>Lo que también hace el mismo asistente.</strong> Ordena el trabajo interno de la empresa, esté el equipo en terreno (fuera de la oficina, por ejemplo en un evento), en la bodega, en la oficina o repartiendo. Maneja avisos de problemas, anuncios, tareas y consulta de stock, que es saber cuánto queda de cada producto. Lo próximo en esa línea es el despacho (la ruta del día del reparto) y el inventario (el conteo). Más adelante, avisar por WhatsApp cuando alguien escanea un código QR pegado en un lugar. Un código QR es el cuadrado de puntitos que se lee con la cámara del celular. Lo verás en la sección 2.</p>
   <p><strong>Lo base y lo extra.</strong> Lo que se vende primero es el asistente de WhatsApp: precio, carrito y cotización que aprueba una persona. Todo lo demás son funciones extra que se suman aparte, según lo que necesite cada empresa: el equipo y sus avisos, el inventario, el despacho, la agenda de horas, los avisos por QR.</p>
   <h3>La familia</h3>
-  <p>Todo se vende bajo Hilo Rojo. Hay cuatro productos más, cada uno con su nombre, que van <strong>sin fecha</strong>; uno es lo próximo y tres vienen luego:</p>
+  <p>Todo se vende bajo Hilo Rojo. Hay cuatro productos más, cada uno con su nombre, que van <strong>sin fecha</strong>. Uno es lo próximo y tres vienen luego:</p>
   <table>
     <tr><th>Nombre</th><th>Qué es</th><th>Frase</th><th>Estado</th></tr>
-    <tr><td><strong>Hilo Rojo</strong></td><td>La empresa, y el asistente de WhatsApp (cotización con aprobación y operación interna del equipo)</td><td>Del chat a la cotización, sin cortar el hilo.</td><td><span class="estado">hoy</span></td></tr>
+    <tr><td><strong>Hilo Rojo</strong></td><td>La empresa, y el asistente de WhatsApp (cotización con aprobación y trabajo interno del equipo)</td><td>Del chat a la cotización, sin cortar el hilo.</td><td><span class="estado">hoy</span></td></tr>
     <tr><td><strong>Punto Rojo</strong></td><td>Un QR pegado en un lugar: quien lo necesita deja un aviso y le llega al equipo que tiene que ir</td><td>Del QR al aviso, sin cortar el hilo.</td><td><span class="estado camino">ya viene luego</span> · funciona en la copia de prueba; falta el primer piloto real</td></tr>
     <tr><td><strong>Pase Rojo</strong></td><td>Entradas con QR y control en la puerta</td><td>De la compra a la puerta, sin cortar el hilo.</td><td><span class="estado camino">ya viene luego</span></td></tr>
     <tr><td><strong>Vale Rojo</strong></td><td>Pagar en un punto y retirar en otro; canje de lo incluido</td><td>Del pago al retiro, sin cortar el hilo.</td><td><span class="estado camino">ya viene luego</span></td></tr>
     <tr><td><strong>Bodega Roja</strong></td><td>Conteo y control de inventario</td><td>Del conteo al pedido, sin cortar el hilo.</td><td><span class="estado proximo">próximo</span> · lo estamos construyendo ahora</td></tr>
   </table>
+  <p>Un <strong>piloto</strong> es la primera prueba con una empresa real. Un <strong>canje</strong> es entregar un vale y recibir lo que incluye.</p>
   <p>El foco de la comunicación es <strong>Hilo Rojo</strong> (cotización por WhatsApp) y, después, <strong>Punto Rojo</strong> (alertas por QR). Los otros tres se muestran como lo hace el sitio: «Todavía no, y sin fecha», con una lista de espera.</p>
-  <div class="nota"><strong>Dónde estamos.</strong> Al 30-oct-2026 estamos instalando con las primeras empresas y todavía no hay clientes que paguen. Por eso no hay testimonios, logos de clientes ni casos que mostrar, y no se inventan.</div>
+  <div class="nota"><strong>Dónde estamos.</strong> Al 30-oct-2026 estamos instalando con las primeras empresas y todavía no hay clientes que paguen. Por eso no hay opiniones de clientes, logos de clientes ni casos que mostrar, y no se inventan.</div>
 </section>
 
 <section class="salto">
   <div class="antetitulo">2</div>
   <h2>Todo lo que hace <em>el asistente</em></h2>
-  <p class="bajada">Primero lo que ve el cliente de la empresa en su WhatsApp; después lo que ve la empresa en su consola. Cada función dice para qué rubro sirve y qué gana el negocio. Las cinco primeras son el asistente base; las del equipo, la agenda y los QR son funciones extra que se suman aparte.</p>
-  <div class="nota">Las <strong>fotos</strong> son de la copia de prueba del 30-oct, con una distribuidora inventada («Distribuidora Demo SpA») y personas inventadas; los precios del chat son de ejemplo. Las <strong>ilustraciones</strong> dibujan cómo se ve en WhatsApp una función que no tiene foto: el texto del asistente está copiado del programa, y los nombres son inventados.</div>
+  <p class="bajada">Primero lo que ve el cliente de la empresa en su WhatsApp. Después lo que ve la empresa en su consola. Cada función parte por el problema, sigue con lo que pasa en orden y termina con lo que cambia para el dueño.</p>
+  <p>Las cinco primeras son el asistente base. Las del equipo, la agenda y los QR son funciones extra que se suman aparte.</p>
+  <div class="nota">Las <strong>fotos</strong> son de la copia de prueba del 30-oct, con una distribuidora inventada («Distribuidora Demo SpA») y personas inventadas. Los precios del chat son de ejemplo. Las <strong>ilustraciones</strong> dibujan cómo se ve en WhatsApp una función que no tiene foto: el texto del asistente está copiado del programa, y los nombres son inventados.</div>
 
   <h3>La venta, de la pregunta al pago</h3>
 
   <div class="funcion">
     <h3>1. Precio y carrito en el chat <span class="estado">hoy</span></h3>
-    <p>El cliente pregunta como lo escribiría a un vendedor («¿cuánto vale el cloro tradicional?»), aunque esté mal escrito o sea un audio: el asistente transcribe los audios. Contesta con el catálogo de la empresa: el producto, sus presentaciones, <strong>tres listas de precio juntas</strong> (detalle con IVA, por mayor y especial) y el stock. Si el cliente pide cantidades, el asistente las suma a un carrito en el mismo chat y muestra el total.</p>
-    <dl class="ficha"><dt>Sirve en</dt><dd>Distribuidoras de aseo, envases, ferretería, insumos dentales y veterinarios, licores, textil, repuestos, agro.</dd>
-    <dt>Gana el negocio</dt><dd>Contesta a cualquier hora con sus propios precios; nadie tiene que buscar la lista y copiar líneas a mano.</dd></dl>
+    <p><strong>El problema.</strong> Un cliente quiere saber cuánto sale un producto y escribe a la hora que puede. Si nadie le contesta, le compra a otro.</p>
+    <ol class="pasos">
+      <li>El cliente escribe como le escribiría a un vendedor: «¿cuánto vale el cloro tradicional?». Puede venir mal escrito o ser un audio: el asistente transcribe los audios.</li>
+      <li>El asistente busca en el <strong>catálogo</strong> de la empresa, que es su lista de productos.</li>
+      <li>Contesta con el producto y sus presentaciones, que son los formatos en que se vende, como el bidón de 5 litros. También muestra <strong>tres listas de precio juntas</strong> (detalle con IVA, por mayor y especial) y el stock.</li>
+      <li>Si el cliente pide cantidades, el asistente las suma a un <strong>carrito</strong> en el mismo chat y muestra el total. Es como el carrito de una tienda en línea: junta lo que el cliente va pidiendo.</li>
+    </ol>
+    <p><strong>Qué cambia para el dueño.</strong> Su negocio contesta a cualquier hora con sus propios precios. Nadie tiene que buscar la lista y copiar líneas a mano.</p>
+    <dl class="ficha"><dt>Sirve en</dt><dd>Distribuidoras de aseo, envases, ferretería, insumos dentales y veterinarios, licores, textil, repuestos, agro.</dd></dl>
     <div class="fila tres">
       <figure><img src="imagenes/foto-precio.png" alt="Chat: el cliente pregunta un precio y el asistente muestra tres listas y el stock"><figcaption>El cliente pregunta; el asistente contesta con las tres listas y el stock.</figcaption></figure>
       <figure><img src="imagenes/foto-carrito.png" alt="Chat: el asistente agrega productos a la cotización y muestra el total parcial"><figcaption>«Agregado a tu cotización», con el total parcial.</figcaption></figure>
@@ -158,9 +219,16 @@
 
   <div class="funcion">
     <h3>2. La cotización la aprueba una persona <span class="estado">hoy</span></h3>
-    <p>Cuando el cliente confirma, la cotización <strong>no sale todavía</strong>: queda como solicitud y le llega un aviso a un vendedor de la empresa, con el detalle y el total. El vendedor responde «aprobar» (o «rechazar») con el número, por WhatsApp o desde la consola. Recién entonces le llega al cliente el aviso de cotización aprobada y el PDF cuando quedó listo. Si la empresa usa un sistema de ventas chileno, la cotización también puede quedar allá.</p>
-    <dl class="ficha"><dt>Sirve en</dt><dd>Cualquier negocio que cotiza por WhatsApp.</dd>
-    <dt>Gana el negocio</dt><dd>El asistente no inventa precios ni cierra nada solo. El vendedor deja de copiar pedidos y sólo revisa y aprueba.</dd></dl>
+    <p><strong>El problema.</strong> El dueño tiene miedo de que una máquina le dé un mal precio a un cliente. Y hoy su vendedor pasa el día copiando pedidos.</p>
+    <ol class="pasos">
+      <li>El cliente confirma. La cotización <strong>no sale todavía</strong>: queda como solicitud.</li>
+      <li>A un vendedor de la empresa le llega un aviso, con el detalle y el total.</li>
+      <li>El vendedor responde «aprobar» (o «rechazar») con el número, por WhatsApp o desde la consola.</li>
+      <li>Recién entonces al cliente le llega el aviso de cotización aprobada y, cuando quedó listo, el PDF. Un PDF es un archivo que se ve igual en cualquier teléfono o computador, como una hoja impresa.</li>
+    </ol>
+    <p>Si la empresa usa un sistema de ventas chileno, la cotización también puede quedar allá.</p>
+    <p><strong>Qué cambia para el dueño.</strong> El asistente no inventa precios ni cierra nada solo. El vendedor deja de copiar pedidos y sólo revisa y aprueba.</p>
+    <dl class="ficha"><dt>Sirve en</dt><dd>Cualquier negocio que cotiza por WhatsApp.</dd></dl>
     <div class="fila tres">
       <figure><img src="imagenes/foto-aviso-vendedor.png" alt="Aviso al vendedor con la solicitud de cotización y las órdenes aprobar o rechazar"><figcaption>Lo que recibe el vendedor: la solicitud, el total y «aprobar» o «rechazar».</figcaption></figure>
       <figure><img src="imagenes/foto-cotizacion-aprobada.png" alt="El cliente recibe el aviso de cotización aprobada"><figcaption>Lo que recibe el cliente cuando el vendedor aprueba.</figcaption></figure>
@@ -169,15 +237,29 @@
 
   <div class="funcion">
     <h3>3. Pago por transferencia y comprobante <span class="estado">hoy</span></h3>
-    <p>Con la cotización aprobada, el cliente responde «confirmo» y recibe los datos de transferencia. Manda la foto del comprobante por el mismo chat; el asistente la recibe, se la pasa al vendedor y le avisa al cliente que la están revisando. Un vendedor de la empresa revisa el pago y lo marca como pagado en la consola, y entonces se le avisa a quien reparte, con el destino. <strong>No hay pago con tarjeta en este flujo</strong>, y el asistente no emite facturas ni boletas: eso lo sigue haciendo la empresa donde lo hace hoy.</p>
-    <dl class="ficha"><dt>Gana el negocio</dt><dd>El pago y el comprobante quedan junto a la cotización, en el mismo hilo, y despacho se entera sin que nadie le reenvíe nada.</dd></dl>
+    <p><strong>El problema.</strong> El comprobante de pago llega como una foto más en el chat. Alguien tiene que revisarlo y avisarle a quien reparte.</p>
+    <ol class="pasos">
+      <li>Con la cotización aprobada, el cliente responde «confirmo» y recibe los datos de transferencia.</li>
+      <li>Manda la foto del comprobante por el mismo chat.</li>
+      <li>El asistente la recibe, se la pasa al vendedor y le avisa al cliente que la están revisando.</li>
+      <li>Un vendedor de la empresa revisa el pago y lo marca como pagado en la consola.</li>
+      <li>Entonces se le avisa a quien reparte, con el destino.</li>
+    </ol>
+    <p><strong>No hay pago con tarjeta en esta parte</strong>, y el asistente no emite facturas ni boletas: eso lo sigue haciendo la empresa donde lo hace hoy.</p>
+    <p><strong>Qué cambia para el dueño.</strong> El pago y el comprobante quedan junto a la cotización, en la misma conversación. Quienes despachan, es decir, quienes preparan y reparten el pedido, se enteran sin que nadie les reenvíe nada.</p>
     <figure style="max-width:260px"><img src="imagenes/ilus-comprobante.png" alt="Ilustración: el cliente manda el comprobante y el asistente confirma que lo recibió"><figcaption>Ilustración: así se ve en WhatsApp. Texto del asistente tomado del programa.</figcaption></figure>
   </div>
 
   <div class="funcion">
     <h3>4. Pasar a una persona <span class="estado">hoy</span></h3>
-    <p>Si el cliente pide hablar con alguien, el asistente <strong>deja de responderle</strong> y avisa a un vendedor, que sigue la conversación desde el mismo número de la empresa o desde la consola. En la consola hay un interruptor, «Silenciar bot», para apagar el asistente con un cliente y volver a prenderlo después.</p>
-    <dl class="ficha"><dt>Gana el negocio</dt><dd>El cliente nunca queda atrapado con una máquina; el vendedor toma la conversación con todo lo anterior a la vista.</dd></dl>
+    <p><strong>El problema.</strong> Nadie quiere quedar atrapado hablando con una máquina cuando necesita a una persona.</p>
+    <ol class="pasos">
+      <li>El cliente pide hablar con alguien.</li>
+      <li>El asistente <strong>deja de responderle</strong> y avisa a un vendedor.</li>
+      <li>El vendedor sigue la conversación desde el mismo número de la empresa o desde la consola, con todo lo anterior a la vista.</li>
+    </ol>
+    <p>En la consola hay un interruptor, «Silenciar bot», para apagar el asistente con un cliente y volver a prenderlo después.</p>
+    <p><strong>Qué cambia para el dueño.</strong> Su cliente nunca queda atrapado con una máquina, y su vendedor no parte de cero.</p>
     <div class="fila dos">
       <figure><img src="imagenes/ilus-derivar.png" alt="Ilustración: el cliente pide una persona y el asistente lo deriva"><figcaption>Ilustración: así se ve en WhatsApp.</figcaption></figure>
       <figure><img src="imagenes/foto-consola-chats.png" alt="Consola comercial, pestaña Chats, con el interruptor Silenciar bot"><figcaption>La consola comercial: chats y el interruptor «Silenciar bot» (a la derecha).</figcaption></figure>
@@ -186,23 +268,41 @@
 
   <div class="funcion">
     <h3>5. Responder lo de siempre <span class="estado">hoy</span></h3>
-    <p>Horario, dirección, medios de pago y los datos de la empresa: el asistente los contesta con lo que la empresa le dejó configurado.</p>
+    <p><strong>El problema.</strong> Los clientes preguntan una y otra vez lo mismo: el horario, la dirección, cómo se paga.</p>
+    <p>El cliente pregunta y el asistente contesta con lo que la empresa le dejó configurado, es decir, anotado una vez en el programa: horario, dirección, medios de pago y datos de la empresa.</p>
+    <p><strong>Qué cambia para el dueño.</strong> Nadie tiene que contestar eso a mano.</p>
   </div>
 
-  <h3>La operación interna</h3>
-  <p>El mismo asistente sirve para ordenar el trabajo de puertas adentro de una empresa, no sólo el de quien está en terreno: una productora de eventos, una constructora, una administración de edificios, un gimnasio, una distribuidora con su bodega y su reparto. Cada persona escribe al WhatsApp del equipo y el asistente ordena lo que llega. Hoy cubre avisos, anuncios, tareas, reporte y consulta de stock de la bodega. Lo próximo, que es lo que se está construyendo ahora: la ruta del día del reparto (despacho) y el conteo de inventario (Bodega Roja). Más adelante, los avisos por QR (Punto Rojo).</p>
+  <h3>El trabajo interno del equipo</h3>
+  <p>El mismo asistente sirve para ordenar el trabajo de puertas adentro de una empresa, no sólo el de quien está en terreno: una productora de eventos, una constructora, una administración de edificios, un gimnasio, una distribuidora con su bodega y su reparto. Cada persona escribe al WhatsApp del equipo y el asistente ordena lo que llega.</p>
+  <p>Hoy cubre avisos, anuncios, tareas, reporte y consulta de stock de la bodega. Lo próximo, que es lo que se está construyendo ahora, es la ruta del día del reparto (despacho) y el conteo de inventario (Bodega Roja). Más adelante, los avisos por QR (Punto Rojo).</p>
 
   <div class="funcion">
     <h3>6. Registro del equipo <span class="estado">hoy</span></h3>
-    <p>Una persona nueva escribe; el asistente le pide nombre y área, y su ingreso queda pendiente hasta que lo apruebe el encargado. El encargado también puede compartir contactos para invitarlos.</p>
+    <p><strong>El problema.</strong> Entra una persona nueva. Hay que saber quién es, en qué área trabaja y si de verdad es del equipo.</p>
+    <ol class="pasos">
+      <li>La persona nueva le escribe al asistente.</li>
+      <li>El asistente le pide nombre y área.</li>
+      <li>Su ingreso queda pendiente hasta que lo apruebe el encargado, que es el responsable de esa área.</li>
+    </ol>
+    <p>El encargado también puede compartir contactos para invitarlos.</p>
+    <p><strong>Qué cambia para el dueño.</strong> Nadie entra al equipo sin que un encargado lo apruebe.</p>
     <figure style="max-width:260px"><img src="imagenes/ilus-registro.png" alt="Ilustración: alta de una persona nueva al equipo"><figcaption>Ilustración: así se ve en WhatsApp.</figcaption></figure>
   </div>
 
   <div class="funcion">
     <h3>7. Avisos de problemas y escalación <span class="estado">hoy</span></h3>
-    <p>Alguien del equipo avisa un problema por WhatsApp, con texto, foto o audio. El aviso le llega al <strong>encargado de esa área</strong>, que responde «resuelto» y qué hizo; el que avisó recibe la respuesta. Si nadie lo resuelve a tiempo, el asistente manda recordatorios y después <strong>sube el aviso al jefe</strong>; si sigue sin resolverse, lo marca como crítico. El plazo lo fija la empresa. Cualquiera puede preguntar en qué van sus avisos.</p>
-    <dl class="ficha"><dt>Sirve en</dt><dd>Productoras de eventos, construcción, administración de edificios y condominios, salud, gimnasios.</dd>
-    <dt>Gana el negocio</dt><dd>El problema deja de ahogarse en un grupo de 20 personas donde nadie confirma que lo vio. Queda escrito quién avisó, quién lo tomó y cuánto se demoró.</dd></dl>
+    <p><strong>El problema.</strong> Se corta la luz en la bodega. Alguien lo escribe en un grupo de 20 personas y nadie confirma que lo vio. El jefe se entera tarde.</p>
+    <ol class="pasos">
+      <li>Alguien del equipo avisa el problema por WhatsApp, con texto, foto o audio.</li>
+      <li>El aviso le llega al <strong>encargado de esa área</strong>.</li>
+      <li>El encargado responde «resuelto» y qué hizo. El que avisó recibe la respuesta.</li>
+      <li>Si nadie lo resuelve a tiempo, el asistente manda recordatorios y después <strong>sube el aviso al jefe</strong>. Eso es la <strong>escalación</strong>: el problema sube un nivel, como un reclamo que pasa del vendedor al gerente.</li>
+      <li>Si sigue sin resolverse, el asistente lo marca como crítico.</li>
+    </ol>
+    <p>El plazo lo fija la empresa. Cualquiera puede preguntar en qué van sus avisos.</p>
+    <p><strong>Qué cambia para el dueño.</strong> El problema deja de ahogarse en un grupo. Queda escrito quién avisó, quién lo tomó y cuánto se demoró.</p>
+    <dl class="ficha"><dt>Sirve en</dt><dd>Productoras de eventos, construcción, administración de edificios y condominios, salud, gimnasios.</dd></dl>
     <div class="fila tres">
       <figure><img src="imagenes/ilus-incidente.png" alt="Ilustración: alguien avisa un problema y recibe la resolución"><figcaption>Ilustración: quien avisa.</figcaption></figure>
       <figure><img src="imagenes/ilus-aviso_encargado.png" alt="Ilustración: el encargado recibe el aviso con foto y lo resuelve"><figcaption>Ilustración: el encargado.</figcaption></figure>
@@ -213,7 +313,13 @@
 
   <div class="funcion">
     <h3>8. Anuncios, tareas y reporte final <span class="estado">hoy</span></h3>
-    <p>El jefe manda un anuncio a todo el equipo o a un área; un encargado, sólo a la suya. Se pueden asignar tareas a una persona o a un área, y cerrarlas. Al terminar un evento o un período, el asistente arma un <strong>reporte</strong>: qué pasó, en qué área y cuánto se demoró cada cosa.</p>
+    <p><strong>El problema.</strong> Hay que avisarle algo a todo el equipo, encargarle algo a alguien y, al final, saber qué pasó.</p>
+    <ol class="pasos">
+      <li>El jefe manda un anuncio a todo el equipo o a un área. Un encargado, sólo a la suya.</li>
+      <li>Se pueden asignar tareas a una persona o a un área, y cerrarlas.</li>
+      <li>Al terminar un evento o un período, el asistente arma un <strong>reporte</strong>: qué pasó, en qué área y cuánto se demoró cada cosa.</li>
+    </ol>
+    <p><strong>Qué cambia para el dueño.</strong> Lee en un solo reporte lo que pasó, en vez de reconstruirlo chat por chat.</p>
     <div class="fila dos">
       <figure><img src="imagenes/ilus-anuncio.png" alt="Ilustración: un anuncio a todo el equipo"><figcaption>Ilustración: así se ve en WhatsApp.</figcaption></figure>
       <figure><img src="imagenes/foto-equipo.png" alt="Consola de operación: el equipo ordenado por áreas"><figcaption>La consola de operación: el equipo por áreas, con su encargado. Recortada: el encabezado mostraba datos de prueba que no van.</figcaption></figure>
@@ -223,7 +329,16 @@
   <h3>Avisos por QR (Punto Rojo)</h3>
   <div class="funcion">
     <h3>9. Un QR pegado en un lugar <span class="estado camino">ya viene luego</span></h3>
-    <p>Se pega un código QR en una zona (un baño, un piso, una entrada). Quien necesita ayuda lo escanea y ve «Estamos avisando al equipo», con dos botones: «Necesito apoyo ahora» y «Fue un error». También puede mandar el código por WhatsApp. Al equipo de apoyo le llega una prealerta con la zona; el primero que responde «VOY» la toma, puede pedir refuerzo y la cierra como atendida. Si nadie marca «VOY» a tiempo, el aviso pasa al siguiente y al jefe. <strong>No se guarda el nombre ni la ubicación del teléfono</strong> de quien escanea.</p>
+    <p><strong>El problema.</strong> Alguien necesita ayuda en un baño, un piso o una entrada, y no sabe a quién avisarle.</p>
+    <ol class="pasos">
+      <li>Se pega un código QR en una zona.</li>
+      <li>Quien necesita ayuda lo escanea con su celular y ve «Estamos avisando al equipo», con dos botones: «Necesito apoyo ahora» y «Fue un error». También puede mandar el código por WhatsApp.</li>
+      <li>Al equipo de apoyo le llega una prealerta con la zona. Una prealerta es el primer aviso de que alguien pidió ayuda ahí.</li>
+      <li>El primero que responde «VOY» la toma. Puede pedir refuerzo y la cierra como atendida.</li>
+      <li>Si nadie marca «VOY» a tiempo, el aviso pasa al siguiente y al jefe.</li>
+    </ol>
+    <p><strong>No se guarda el nombre ni la ubicación del teléfono</strong> de quien escanea.</p>
+    <p><strong>Qué cambiaría para el dueño.</strong> El aviso le llega solo al equipo que tiene que ir. Quien pide ayuda no necesita saber a quién llamar.</p>
     <dl class="ficha"><dt>Sirve en</dt><dd>Condominios, oficinas, hoteles, locales, eventos, bodegas y cualquier lugar de la empresa donde alguien necesite avisar, no sólo el terreno.</dd>
     <dt>Estado</dt><dd>Funciona en la copia de prueba; falta el primer piloto real. En el sitio está «en camino, sin fecha».</dd></dl>
     <div class="fila tres">
@@ -236,7 +351,16 @@
   <h3>Horas por WhatsApp</h3>
   <div class="funcion">
     <h3>10. Agenda de horas <span class="estado">hoy · función extra</span></h3>
-    <p>Para negocios que dan hora (barbería, consulta, taller): el cliente pide hora por WhatsApp, el asistente le ofrece las disponibles, la confirma con un código y el cliente puede cancelarla. El dueño ve su agenda desde el celular o el computador. Es una función extra: se suma al asistente de WhatsApp para el negocio que vende horas, y a un negocio que vende productos no se le agrega.<strong>Todavía no manda recordatorio el día antes</strong>, y no usa el calendario que el negocio ya tenga: es una agenda propia.</p>
+    <p><strong>El problema.</strong> Una barbería, una consulta o un taller reciben «¿hay hora?» a cualquier hora, y alguien tiene que contestar y anotar.</p>
+    <ol class="pasos">
+      <li>El cliente pide hora por WhatsApp.</li>
+      <li>El asistente le ofrece las disponibles.</li>
+      <li>La confirma con un código, y el cliente puede cancelarla.</li>
+      <li>El dueño ve su agenda desde el celular o el computador.</li>
+    </ol>
+    <p>Es una función extra: se suma al asistente de WhatsApp para el negocio que vende horas, y a un negocio que vende productos no se le agrega.</p>
+    <p><strong>Todavía no manda recordatorio el día antes</strong>, y no usa el calendario que el negocio ya tenga: es una agenda propia.</p>
+    <p><strong>Qué cambia para el dueño.</strong> Las horas se piden y quedan anotadas sin que tenga que contestar el teléfono.</p>
     <figure style="max-width:260px"><img src="imagenes/ilus-reserva.png" alt="Ilustración: el cliente pide hora y el asistente la confirma"><figcaption>Ilustración: así se ve en WhatsApp.</figcaption></figure>
   </div>
 
@@ -244,47 +368,80 @@
 
   <div class="funcion">
     <h3>11. Consola comercial: cotizaciones y métricas <span class="estado">hoy</span></h3>
-    <p>Una página web con usuario y contraseña, sin instalar nada. Cinco pestañas: <strong>Chats</strong>, <strong>Inventario</strong>, <strong>Cotizaciones</strong>, <strong>Métricas</strong> y <strong>Despacho</strong>. En Cotizaciones se ve el camino de cada venta: consulta, cotizando, solicitud, cotizada, orden de compra y pagada. Métricas muestra las ventas cerradas, las cotizaciones por día y la venta promedio. Cada empresa ve sólo lo suyo: <strong>los datos van aislados por cliente</strong>.</p>
+    <p><strong>El problema.</strong> Todo pasa por el teléfono de una persona. La venta perdida no aparece en ninguna parte, y el dueño no sabe cómo va.</p>
+    <p>La consola es una página web con usuario y contraseña, sin instalar nada. Tiene cinco pestañas, que son como las lengüetas de una carpeta: <strong>Chats</strong>, <strong>Inventario</strong>, <strong>Cotizaciones</strong>, <strong>Métricas</strong> y <strong>Despacho</strong>.</p>
+    <p>En <strong>Cotizaciones</strong> se ve el camino de cada venta, en seis etapas:</p>
+    <ol class="pasos">
+      <li><strong>Consulta:</strong> el cliente preguntó.</li>
+      <li><strong>Cotizando:</strong> está armando su carrito.</li>
+      <li><strong>Solicitud:</strong> confirmó y espera que un vendedor apruebe.</li>
+      <li><strong>Cotizada:</strong> el vendedor aprobó.</li>
+      <li><strong>Orden de compra:</strong> el cliente confirmó que quiere comprar.</li>
+      <li><strong>Pagada:</strong> un vendedor marcó el pago.</li>
+    </ol>
+    <p>En <strong>Métricas</strong>, que son los números de cómo va la venta, están las ventas cerradas, las cotizaciones por día y la venta promedio.</p>
+    <p><strong>Qué cambia para el dueño.</strong> Ve en un solo lugar en qué va cada venta, sin preguntarle a nadie. Cada empresa ve sólo lo suyo: <strong>los datos van aislados por cliente</strong>.</p>
     <figure><img src="imagenes/foto-consola-embudo.png" alt="Consola comercial, pestaña Cotizaciones, con las seis etapas de la venta"><figcaption>Las seis etapas de la venta, en la copia de prueba recién abierta (por eso todo está en cero).</figcaption></figure>
     <figure style="max-width:300px"><img src="imagenes/foto-duena.png" alt="Lo que ve la dueña en la demo para practicar: cotizaciones, clientes derivados y equipo"><figcaption>La vista resumida de la dueña, en la demo para practicar.</figcaption></figure>
   </div>
 
   <div class="funcion">
     <h3>12. Catálogo e importación <span class="estado">hoy</span></h3>
-    <p>En la pestaña Inventario, la empresa ve su catálogo con el stock y lo edita, lo importa o lo exporta en Excel. Si trabaja con una planilla de Google, se carga al arrancar y cada mañana: no se lee en vivo. El equipo también puede preguntar stock por WhatsApp, y la consulta le llega al jefe de bodega.</p>
+    <p><strong>El problema.</strong> La lista de precios muchas veces vive en una planilla, y el asistente tiene que usar la misma lista que usa la empresa.</p>
+    <ol class="pasos">
+      <li>En la pestaña Inventario, la empresa ve su catálogo con el stock.</li>
+      <li>Lo edita ahí mismo, o lo importa o lo exporta en Excel. Importar es subir la planilla completa de una vez; exportar es bajarla.</li>
+      <li>Si trabaja con una planilla de Google, se carga al arrancar y cada mañana. No se lee en vivo: un cambio hecho en la tarde se ve en la carga de la mañana siguiente.</li>
+    </ol>
+    <p>El equipo también puede preguntar stock por WhatsApp, y la consulta le llega al jefe de bodega.</p>
+    <p><strong>Qué cambia para el dueño.</strong> Sigue con su planilla si quiere: no tiene que cargar sus productos uno por uno.</p>
     <p class="chico">Sin foto: en la copia de prueba el catálogo estaba vacío.</p>
   </div>
 
   <div class="funcion">
     <h3>13. El plan de cada cliente, por módulos <span class="estado">hoy</span></h3>
-    <p>Cada función se enciende o se apaga por cliente: avisos y escalación, anuncios, tareas, reporte final, registro, catálogo y cotizaciones. Lo que queda fuera del plan aparece bloqueado en la consola del cliente. Los cambios valen al instante, sin reiniciar nada.</p>
+    <p><strong>El problema.</strong> No todas las empresas necesitan lo mismo.</p>
+    <p>Un <strong>módulo</strong> es una parte del asistente que se enciende o se apaga por separado. Cada función se enciende o se apaga por cliente: avisos y escalación, anuncios, tareas, reporte final, registro, catálogo y cotizaciones.</p>
+    <p><strong>Qué cambia para el dueño.</strong> Lo que queda fuera de su plan aparece bloqueado en su consola. Los cambios valen al instante, sin reiniciar nada.</p>
     <figure style="max-width:520px"><img src="imagenes/foto-plan-cliente.png" alt="Pantalla Plan del cliente con nueve funciones y su interruptor"><figcaption>«Plan del cliente»: las funciones contratadas, con su interruptor. Pantalla interna nuestra, recortada.</figcaption></figure>
   </div>
 
   <div class="funcion">
     <h3>14. Rubros <span class="estado">hoy</span></h3>
-    <p>El asistente parte de una plantilla por tipo de negocio y se ajusta con configuración, sin programar: <strong>insumos de aseo, retail, construcción, eventos, banquetería, propiedades, salud y gimnasios</strong>. Cambia el vocabulario, las áreas del equipo y las funciones encendidas.</p>
+    <p><strong>El problema.</strong> Cada tipo de negocio, o <strong>rubro</strong>, habla distinto y se ordena distinto.</p>
+    <p>El asistente parte de una plantilla por tipo de negocio, un modelo ya armado, y se ajusta con configuración, sin programar. Hay plantillas para <strong>insumos de aseo, retail (tiendas que venden al público), construcción, eventos, banquetería, propiedades, salud y gimnasios</strong>.</p>
+    <p><strong>Qué cambia para el dueño.</strong> Cambia el vocabulario, las áreas del equipo y las funciones encendidas, para que el asistente se ajuste a su negocio.</p>
   </div>
 
   <h3>Para vender</h3>
 
   <div class="funcion">
     <h3>15. La demo y la práctica para vendedores <span class="estado">hoy</span></h3>
-    <p><strong>La demo</strong> dura unos 12 minutos: el posible cliente le escribe al número como si fuera su cliente, y en la otra pantalla ve lo que recibe su vendedor, que aprieta «aprobar» en vivo. Se hace con su propia lista de precios o con una empresa inventada (aseo, envases o ferretería); <strong>nunca con el catálogo de otro cliente</strong>.</p>
-    <p><strong>La práctica</strong> es una página para el celular, sin WhatsApp real, donde un vendedor nuevo ensaya con cinco negocios inventados y tres papeles (cliente, vendedor y dueña), con misiones que lo guían.</p>
+    <p><strong>El problema.</strong> Sin ver lo que hace, el dueño sólo puede compararlo con lo gratis. Y un vendedor nuevo tiene que ensayar antes de hablar con un cliente.</p>
+    <p><strong>La demo</strong> es una prueba en vivo que dura unos 12 minutos:</p>
+    <ol class="pasos">
+      <li>El posible cliente le escribe al número como si fuera su cliente.</li>
+      <li>En la otra pantalla ve lo que recibe su vendedor.</li>
+      <li>El vendedor aprieta «aprobar» en vivo.</li>
+    </ol>
+    <p>Se hace con su propia lista de precios o con una empresa inventada (aseo, envases o ferretería); <strong>nunca con el catálogo de otro cliente</strong>.</p>
+    <p><strong>La práctica</strong> es una página para el celular, sin WhatsApp real. Ahí un vendedor nuevo ensaya con cinco negocios inventados y tres papeles (cliente, vendedor y dueña), con misiones que lo guían.</p>
+    <p><strong>Qué cambia para el dueño.</strong> Ve funcionar el producto antes de hablar de precio.</p>
     <figure style="max-width:260px"><img src="imagenes/foto-practica.png" alt="Demo para practicar: lista de negocios inventados"><figcaption>La práctica: cada negocio es inventado y trae sus misiones.</figcaption></figure>
   </div>
 
   <div class="funcion">
     <h3>16. Datos personales <span class="estado">hoy</span></h3>
-    <p>Cada empresa tiene su base de datos aparte. Una persona puede pedir que borren sus datos escribiendo «eliminar mis datos» y confirmando. Las notas de voz se pasan a texto y el audio no se guarda.</p>
+    <p><strong>El problema.</strong> El dueño pregunta: «¿Dónde quedan los datos de mis clientes?».</p>
+    <p>Cada empresa tiene su base de datos aparte. Una base de datos es el archivador digital donde quedan guardados los datos, y cada empresa tiene el suyo. Una persona puede pedir que borren sus datos escribiendo «eliminar mis datos» y confirmando. Las notas de voz se pasan a texto y el audio no se guarda.</p>
+    <p><strong>Qué cambia para el dueño.</strong> Tiene una respuesta clara: los datos van aislados por cliente.</p>
   </div>
 
   <div class="funcion">
   <h3>Lo que viene <span class="estado proximo">próximo</span></h3>
   <p>Lo que se está construyendo ahora. Sin fecha.</p>
   <ul>
-    <li><strong>Despacho: ruta del día para el reparto</strong> (orden, horarios y aviso al chofer): existe un prototipo, apagado. Hoy sólo se avisa el destino a quien reparte.</li>
+    <li><strong>Despacho: ruta del día para el reparto</strong> (orden, horarios y aviso al chofer). Existe un prototipo, que es una primera versión para probar la idea, y está apagado. Hoy sólo se avisa el destino a quien reparte.</li>
     <li><strong>Inventario: conteo</strong> (Bodega Roja). Hoy existe el catálogo con su stock, no el conteo.</li>
   </ul>
   </div>
@@ -320,7 +477,7 @@
     <li><strong>El cliente acepta y paga por transferencia</strong>, y manda la foto del comprobante. Un vendedor revisa que el pago llegó.</li>
     <li><strong>Se le avisa a quien reparte</strong>, que lleva el pedido. La factura se hace en el sistema de facturación que la empresa ya usa.</li>
   </ol>
-  <p>Todo eso pasa por una sola persona y un teléfono. Hilo Rojo hace los pasos 1 a 4 en el mismo chat, y el vendedor sólo revisa y aprueba (sección 2).</p>
+  <p>Todo eso pasa por una sola persona y un teléfono. Con Hilo Rojo, esos pasos pasan en el mismo chat: el asistente busca el producto, muestra las tres listas juntas y arma la cotización, y el vendedor sólo revisa y aprueba (sección 2).</p>
 
   <h3>Dónde se pierde la venta</h3>
   <ul>
@@ -356,10 +513,15 @@
     <li>Vende algo con precio que se repite: productos de una lista, o servicios con tarifa.</li>
     <li>Se nota que contesta una persona, a mano: un horario de atención o un «te respondemos a la brevedad».</li>
   </ol>
-  <p><strong>No sirve</strong> para un almacén que vende sólo en el mesón (si el pedido no pasa por WhatsApp, no le cambia el día) ni para una empresa grande con call center y sistema propio (no le duele lo mismo y decide en meses).</p>
+  <p><strong>No sirve</strong> para un almacén que vende sólo en el mesón: si el pedido no pasa por WhatsApp, no le cambia el día. Tampoco para una empresa grande con un equipo de atención telefónica y sistema propio: no le duele lo mismo y decide en meses.</p>
 
-  <h3>Cuántos hemos mirado</h3>
-  <p>Sólo conteos, sin nombres: una lista de 119 empresas en 15 segmentos (las más numerosas: oficina y librería, repostería, ferretería, veterinaria y agro, dental y médico, aseo, envases, eléctrico); 61 primeros mensajes escritos uno por uno; y 20 empresas en el orden de contacto, la mayoría de aseo, veterinaria, envases y ferretería. Los contactos empiezan el lunes 2-nov. Otros rubros con ficha armada: insumos dentales y veterinarios, licores, textil, repuestos y agro.</p>
+  <h3>Cuántos hemos mirado (sólo conteos, sin nombres)</h3>
+  <ul>
+    <li>Una lista de <strong>119 empresas</strong> en 15 grupos de negocios parecidos. Los más numerosos: oficina y librería, repostería, ferretería, veterinaria y agro, dental y médico, aseo, envases, eléctrico.</li>
+    <li><strong>61 primeros mensajes</strong> escritos uno por uno.</li>
+    <li><strong>20 empresas</strong> en el orden de contacto, la mayoría de aseo, veterinaria, envases y ferretería.</li>
+  </ul>
+  <p>Los contactos empiezan el lunes 2-nov. Otros rubros ya estudiados: insumos dentales y veterinarios, licores, textil, repuestos y agro.</p>
   <p class="chico">El rubro más sólido para mostrar es aseo y envases: las demos inventadas se armaron para ellos.</p>
 
   <h3>Los otros rubros</h3>
@@ -367,7 +529,7 @@
   <table>
     <tr><th>Rubro</th><th>Su problema</th><th>Qué le sirve hoy</th></tr>
     <tr><td>Productoras de eventos y equipos que trabajan repartidos (terreno, bodega, reparto, oficina)</td><td>Los avisos del equipo se pierden en un grupo; el jefe se entera tarde.</td><td>Avisos al encargado, escalación, anuncios, reporte final.</td></tr>
-    <tr><td>Administración de condominios</td><td>Residentes que escriben al WhatsApp de la administración; el conserje avisa por otro chat.</td><td>Avisos con foto al encargado, escalación, QR en un lugar (Punto Rojo). No cubre gastos comunes ni reservas.</td></tr>
+    <tr><td>Administración de condominios</td><td>Residentes que escriben al WhatsApp de la administración; el conserje avisa por otro chat.</td><td>Avisos con foto al encargado y escalación. Ya viene luego: QR en un lugar (Punto Rojo). No cubre gastos comunes ni reservas.</td></tr>
     <tr><td>Talleres mecánicos</td><td>Se coordina la hora por WhatsApp; el precio sale después de ver el auto.</td><td>Horas y servicios con precio publicado. No sirve para presupuestos que nacen del diagnóstico.</td></tr>
     <tr><td>Negocios con hora (barbería, consulta, estética)</td><td>«¿Cuánto sale?», «¿hay hora?», a cualquier hora.</td><td>Respuestas de siempre y agenda de horas (sin recordatorio del día antes).</td></tr>
   </table>
@@ -386,6 +548,7 @@
     <tr><td><strong>WhatsApp Business</strong>, la aplicación gratis</td><td>Una pyme atiende desde un teléfono. Tiene catálogo, horario y respuestas rápidas, pero contesta una persona con el teléfono en la mano.</td><td>Una barbería, una distribuidora chica.</td></tr>
     <tr><td><strong>La plataforma de WhatsApp para empresas</strong> (la «API»)</td><td>El número de la empresa queda conectado a un programa, no a un teléfono. El programa recibe los mensajes y los contesta. Es la puerta oficial que abre Meta, la empresa dueña de WhatsApp.</td><td>Hilo Rojo y todos los competidores de este capítulo.</td></tr>
   </table>
+  <p>«API» es la sigla en inglés de una conexión entre dos programas. Funciona como un enchufe: por ahí el WhatsApp de la distribuidora le pasa los mensajes al asistente, y el asistente devuelve las respuestas.</p>
   <p>Para el cliente de la distribuidora no cambia nada: sigue usando su WhatsApp de siempre y no instala ninguna aplicación.</p>
 
   <h3>Lo que cambió el 1 de octubre</h3>
@@ -393,6 +556,10 @@
   <p>Qué significa para ti: toda oferta de este mercado tiene ahora <strong>dos cuentas</strong>, lo que cobra el programa y lo que cobra Meta por los mensajes. Por eso nosotros mostramos lo de Meta aparte (sección 5).</p>
 
   <h3>Las cifras del mercado</h3>
+  <div class="simple">
+    <p><strong>En simple.</strong> Casi todos los que usan internet en Chile usan WhatsApp, y atender por ahí dejó de ser gratis del todo. Meta confirmó que cobra desde el mensaje 1.001. Cuánto cobra en Chile todavía no lo pudimos confirmar: los montos de abajo son de terceros y no van en una pieza. El asistente básico ya lo regala Meta. Y el dueño compara cualquier mensualidad con el sueldo de una persona.</p>
+  </div>
+  <p>Tres palabras para leer la tabla. Un <strong>mensaje de servicio</strong> es la respuesta a un cliente que escribió primero. Un <strong>mensaje de utilidad</strong> es un aviso sobre algo en curso, como «tu pedido va en camino». Un <strong>mensaje de marketing</strong> es una promoción.</p>
   <table>
     <tr><th>Qué</th><th>Fuente y fecha</th></tr>
     <tr><td>WhatsApp lo usa más del 90 % de quienes usan internet en Chile.</td><td>Statista (2025), citado en material interno de julio de 2026.</td></tr>
@@ -400,29 +567,37 @@
     <tr><td>Los montos para Chile: unos US$0,020 por mensaje de servicio y unos US$0,09 por mensaje de marketing. No van en una pieza: la tabla oficial de Meta para Chile está en pesos chilenos y no se pudo leer; el de servicio lo repiten dos medios chilenos y varios proveedores, y el de marketing sólo proveedores.</td><td>Radio Agricultura (2-oct-2026) y blogs de proveedores de octubre de 2026 (de terceros, sin confirmar). Mirar la tabla de Meta, mercado Chile, moneda CLP.</td></tr>
     <tr><td>Atender por WhatsApp cuesta en Chile hasta 25 veces más que en Colombia.</td><td>g5noticias.cl, 15-oct-2026.</td></tr>
     <tr><td>Desde junio de 2026, Meta regala en la app de WhatsApp Business un asistente que contesta preguntas y recomienda del catálogo. El asistente básico ya es gratis: lo que vale es el proceso (cotización aprobada, equipo, registro).</td><td>Investigación interna del 25-jul-2026.</td></tr>
-    <tr><td>El dueño compara contra una persona: el sueldo mínimo es $553.553 brutos (desde mayo de 2026) y un asistente de ventas gana en promedio $481.438.</td><td>Ley 21.830 (Diario Oficial, 22-jun-2026); Computrabajo Chile, 14-oct-2026.</td></tr>
+    <tr><td>El dueño compara contra una persona: el sueldo mínimo es $553.553 brutos, antes de descuentos (desde mayo de 2026), y un asistente de ventas, aquí una persona con ese cargo, gana en promedio $481.438.</td><td>Ley 21.830 (Diario Oficial, 22-jun-2026); Computrabajo Chile, 14-oct-2026.</td></tr>
     <tr><td><em>Sin fuente, no usar:</em> «12 millones de pymes en Latinoamérica», «50.000 distribuidoras en Chile», «se pierde el 30 % de las ventas de noche», «el 70 % de las compras se hace desde el celular».</td><td>Material interno de julio a septiembre de 2026, sin fuente citada.</td></tr>
   </table>
 
   <h3>La competencia</h3>
-  <p>Hay seis tipos de competidor. Explicados en simple, con lo que importa de cada uno:</p>
+  <div class="simple">
+    <p><strong>La competencia en cinco líneas.</strong></p>
+    <p>1. Un asistente que sólo contesta ya es gratis: lo regala Meta.</p>
+    <p>2. Las plataformas pagadas sirven para cualquier negocio, y varias suben la cuenta cuando el negocio crece.</p>
+    <p>3. Las empresas más grandes apuntan más arriba, y las agencias arman bots a medida.</p>
+    <p>4. No competimos con el sistema donde la pyme factura: nos ponemos encima.</p>
+    <p>5. Ninguna página de precios revisada el 16-oct publica lo nuestro: una persona aprueba la cotización antes de enviarla.</p>
+  </div>
+  <p>Hay seis tipos de competidor. Con lo que importa de cada uno:</p>
   <ul>
-    <li><strong>El gratis de Meta.</strong> La aplicación WhatsApp Business no cuesta nada y, desde junio de 2026, trae un asistente que contesta preguntas y recomienda productos del catálogo. Es con lo que parte cualquier pyme. Para nosotros es el más importante: <strong>un asistente que sólo contesta ya es gratis</strong>. Por eso nunca vendemos «un bot que contesta»: vendemos el proceso entero, del precio de su propia lista a la cotización aprobada por una persona, el pago y el despacho.</li>
-    <li><strong>Plataformas internacionales.</strong> Programas, cobrados en dólares, donde varias personas atienden el mismo WhatsApp desde el computador, con un asistente de inteligencia artificial. Sirven para cualquier negocio y muchos los arma el propio cliente. Varios cobran por usuario (cada persona del equipo que entra suma), por contacto o por cada respuesta del asistente, así que la cuenta sube cuando el negocio crece.</li>
+    <li><strong>El gratis de Meta.</strong> La aplicación WhatsApp Business no cuesta nada y, desde junio de 2026, trae un asistente que contesta preguntas y recomienda productos del catálogo. Es con lo que parte cualquier pyme. Para nosotros es el más importante: <strong>un asistente que sólo contesta ya es gratis</strong>. Por eso nunca vendemos «un bot que contesta»: vendemos el proceso entero, del precio de su propia lista a la cotización aprobada por una persona, el pago y el aviso a quien reparte.</li>
+    <li><strong>Plataformas internacionales.</strong> Una plataforma es un programa por internet. En éstas, cobradas en dólares, varias personas atienden el mismo WhatsApp desde el computador, con un asistente de inteligencia artificial. Sirven para cualquier negocio y muchos los arma el propio cliente. Varios cobran por usuario (cada persona del equipo que entra suma), por contacto o por cada respuesta del asistente, así que la cuenta sube cuando el negocio crece.</li>
     <li><strong>Plataformas latinoamericanas.</strong> La misma idea, en español y desde la región. La inteligencia artificial suele cobrarse aparte, y algunas tienen un tope de conversaciones: al llegar, el WhatsApp deja de recibir chats nuevos hasta el mes siguiente o hasta subir de plan.</li>
     <li><strong>«Empleados digitales».</strong> Empresas más grandes que venden asistentes para ventas, cobranza y postventa, en WhatsApp, Instagram y llamadas. Apuntan más arriba: la puesta en marcha parte en unos US$4.900.</li>
     <li><strong>Agencias y bots chilenos.</strong> Alguien le arma a la empresa un bot a medida o le vende uno básico. Van desde unos $15.000 al mes hasta proyectos de 2 a 3 millones de pesos. El más cercano a nosotros cotiza contra una planilla, sin aprobación de una persona, sin tres listas de precio y sin despacho.</li>
     <li><strong>Lo que la pyme ya paga</strong> (no compite). El sistema donde factura, lleva el inventario o tiene su tienda en línea. Cuesta entre 1,5 y 2 UF al mes (la UF es una unidad chilena que sube con la inflación; el 16-oct-2026 valía $41.168). No lo reemplazamos: Hilo Rojo se pone encima, contesta el WhatsApp y deja la cotización; la factura se sigue haciendo donde se hace hoy. Este número importa porque es contra lo que el dueño mide cualquier mensualidad nueva.</li>
   </ul>
-  <p>Precios públicos al 16-oct-2026, sin IVA. Cambian rápido: revisarlos antes de citarlos.</p>
+  <p>El detalle, para quien quiera comparar. Precios públicos al 16-oct-2026, sin IVA. Cambian rápido: revisarlos antes de citarlos.</p>
   <table>
     <tr><th>Tipo</th><th>Cómo cobran</th><th>En qué somos distintos</th></tr>
-    <tr><td>Gratis de Meta</td><td>$0</td><td>No conoce precios por tramo ni stock, no arma una cotización que apruebe una persona, no da reportes.</td></tr>
+    <tr><td>Gratis de Meta</td><td>$0</td><td>No conoce las tres listas de precio ni el stock, no arma una cotización que apruebe una persona, no da reportes.</td></tr>
     <tr><td>Plataformas internacionales con IA</td><td>De US$29 a unos US$300 al mes; varias cobran por usuario, por contacto o por cada respuesta de la IA.</td><td>Ninguna publica «una persona aprueba el precio antes de enviarlo». Nosotros: sin cobro por usuario.</td></tr>
     <tr><td>Plataformas latinoamericanas</td><td>De US$45 a unos US$400 al mes; la IA suele ser un adicional; algunas cortan al llegar a un tope de conversaciones.</td><td>Casi ninguna trae tres listas de precio, cotización con aprobación ni conexión a sistemas chilenos.</td></tr>
-    <tr><td>Asistentes «de empleados digitales»</td><td>Sin precio público; implementación desde US$4.900 (2-sep-2025).</td><td>Más grande y caro; nosotros, cotización con aprobación y escalación para una pyme.</td></tr>
-    <tr><td>Agencias y bots chilenos</td><td>Desde unos $15.000 al mes (bot básico) hasta proyectos de $2 a $3 millones.</td><td>El más cercano cotiza contra una planilla, sin aprobación, sin tramos y sin despacho.</td></tr>
-    <tr><td>Lo que la pyme ya paga (no compite)</td><td>De 1,5 a 2 UF al mes, o su equivalente.</td><td>No los reemplazamos: nos colgamos encima. La factura se sigue haciendo donde se hace hoy.</td></tr>
+    <tr><td>Asistentes «de empleados digitales»</td><td>Sin precio público; implementación desde US$4.900 (2-sep-2025).</td><td>Más grande y caro. Nosotros: cotización con aprobación y avisos que suben al jefe, para una pyme.</td></tr>
+    <tr><td>Agencias y bots chilenos</td><td>Desde unos $15.000 al mes (bot básico) hasta proyectos de $2 a $3 millones.</td><td>El más cercano cotiza contra una planilla, sin aprobación, sin tres listas de precio y sin despacho.</td></tr>
+    <tr><td>Lo que la pyme ya paga (no compite)</td><td>De 1,5 a 2 UF al mes, o su equivalente.</td><td>No los reemplazamos: nos ponemos encima. La factura se sigue haciendo donde se hace hoy.</td></tr>
   </table>
   <div class="nota"><strong>El hueco:</strong> ninguna página de precios revisada el 16-oct publica cotización con aprobación de una persona antes de enviarla. Ése es nuestro lugar.</div>
 </section>
@@ -511,6 +686,7 @@
     <tr><td>Los datos van aislados por cliente.</td><td>«Conforme a la ley de datos».</td></tr>
   </table>
   <h3>Lo visual que ya está decidido</h3>
+  <p>El valor de cada color es el código con que un computador lo reconoce, para que salga igual en todas partes.</p>
   <table>
     <tr><th>Color</th><th>Valor</th><th>Para qué</th></tr>
     <tr><td>Papel</td><td>#fcfbf9</td><td>Fondo</td></tr>
@@ -542,6 +718,9 @@
     <tr><td>Funciones que no existen: pedido mínimo, lista de precios por cliente, validar el RUT, repetir el pedido anterior, cupones, factura o boleta al SII, pago con tarjeta, pedir un Uber o Rappi, leer el calendario del negocio</td><td>No están en el producto.</td></tr>
   </table>
   <h3>Lo abierto</h3>
+  <div class="simple">
+    <p><strong>En simple.</strong> Todavía no hay logo: se rehace el domingo 1-nov y, hasta entonces, todo sale sin logo. El martes 3-nov Rob reserva la dirección del sitio y prueba el usuario de Instagram. Falta el número de WhatsApp de la empresa: sin él no se arma el perfil ni funcionan los botones del sitio. Y hay que reemplazar la política de privacidad publicada por la nueva, ya escrita.</p>
+  </div>
   <table>
     <tr><th>Qué</th><th>Estado al 30-oct</th></tr>
     <tr><td><strong>Logo</strong> de Hilo Rojo y de los cuatro hijos</td><td>Se rehace en la sesión del domingo 1-nov. Existe un trazo provisorio del 9-oct (un hilo vino que se curva y termina en un nudo, sobre un cuadro casi negro) y se probaron dos estilos más: <strong>no gustaron</strong> el trazo grueso de un solo color ni el hilo como un palito con un punto. Hasta entonces, toda pieza sale <strong>sin logo</strong>, con el nombre escrito en Instrument Serif.</td></tr>
@@ -556,6 +735,10 @@
   <div class="antetitulo">7</div>
   <h2>Canales <em>de venta</em></h2>
   <p>Lo decidió Rob el 29-oct: <strong>WhatsApp uno a uno, escrito a mano</strong> (nunca difusión masiva), <strong>visita en persona</strong>, <strong>LinkedIn personal</strong>, el <strong>sitio</strong> como destino e <strong>Instagram</strong> con una sola cuenta. <strong>Sin correo en frío ni anuncios pagados hasta el primer cliente.</strong></p>
+  <div class="simple">
+    <p><strong>En simple.</strong> Vendemos de a una empresa por vez. Desde el lunes 2-nov, los vendedores escriben a mano por WhatsApp. También están la visita en persona y LinkedIn. Instagram es una sola cuenta y deriva los mensajes a WhatsApp. El sitio es adonde llega quien quiere saber más. Correo en frío (a empresas que no nos conocen) y anuncios pagados, no hasta el primer cliente.</p>
+  </div>
+  <p>Canal por canal:</p>
   <table>
     <tr><th>Canal</th><th>Estado</th><th>Qué pieza existe</th><th>Lo aprendido</th></tr>
     <tr><td>WhatsApp uno a uno</td><td>Es el canal principal; nada enviado todavía. Desde el 2-nov.</td><td>Secuencia de tres mensajes (primero, día 3 y día 7), con respuestas a las preguntas típicas; 61 primeros mensajes escritos por empresa.</td><td>El primer mensaje no pide una reunión: invita a probar algo de 10 a 15 minutos. Sin enlaces, adjuntos ni precio. De lunes a viernes, de 9 a 19. Un texto masivo hace que Meta marque el número.</td></tr>
@@ -568,7 +751,7 @@
     <tr><td>Sitio</td><td>Existe en una dirección provisoria; falta el número, el formulario, el logo y la política nueva.</td><td>Portada, página para distribuidoras y una página por cada producto en camino.</td><td>Ver sección 8.</td></tr>
     <tr><td>Folleto</td><td>Existe, de seis páginas.</td><td>«Qué hacemos», pensado para quien podría vender.</td><td>No es para el cliente final.</td></tr>
     <tr><td>Correo a empresas</td><td>Descartado por ahora.</td><td>—</td><td>Sin dominio propio cae en spam y se ve personal. Se retoma con dominio.</td></tr>
-    <tr><td>Anuncios pagados de Meta</td><td>Descartados hasta tener un caso que mostrar.</td><td>—</td><td>Sin testimonio se queman.</td></tr>
+    <tr><td>Anuncios pagados de Meta</td><td>Descartados hasta tener un caso que mostrar.</td><td>—</td><td>Sin testimonio, es gastar plata sin resultado.</td></tr>
     <tr><td>Referidos</td><td>Cuando haya precio.</td><td>—</td><td>—</td></tr>
   </table>
   <h3>Frases que ya funcionan en los mensajes</h3>
@@ -585,7 +768,7 @@
   <div class="antetitulo">8</div>
   <h2>Lo que ya existe <em>para comunicar</em></h2>
   <p>Todo usa ya la paleta y las letras de arriba, y todo sale sin logo.</p>
-  <figure><img src="imagenes/pieza-landing.png" alt="Portada del sitio de Hilo Rojo"><figcaption><strong>La portada del sitio.</strong> Titular, bajada, prueba y un chat de ejemplo. Debajo, la captura muestra una franja de cuatro cifras («0 apps nuevas para el cliente…»): Rob decidió el 30-oct sacarla del sitio, así que la captura es anterior a ese cambio.</figcaption></figure>
+  <figure><img src="imagenes/pieza-landing.png" alt="Portada del sitio de Hilo Rojo"><figcaption><strong>La portada del sitio.</strong> Titular, bajada, prueba y un chat de ejemplo. Debajo, la captura muestra una franja de cuatro cifras («0 apps nuevas para el cliente…»). Rob decidió el 30-oct sacarla del sitio: esta captura es anterior a ese cambio.</figcaption></figure>
   <figure><img src="imagenes/pieza-familia.png" alt="Sección La familia: cuatro productos más, en camino"><figcaption><strong>La familia en el sitio:</strong> los cuatro productos, con borde punteado porque todavía no están.</figcaption></figure>
   <div class="fila dos">
     <figure><img src="imagenes/pieza-punto.png" alt="Página de Punto Rojo"><figcaption><strong>Página de cada producto en camino</strong> (ésta es Punto Rojo): qué es, para quién, «Todavía no, y sin fecha» y el botón de la lista de espera, apagado hasta que exista el formulario.</figcaption></figure>
@@ -603,7 +786,7 @@
   <p class="chico">Las tres plantillas existen en 1080 × 1080 y 1080 × 1350. Aquí van con frases ya aprobadas en lugar de sus marcadores.</p>
   <h3>Piezas viejas que no se usan</h3>
   <ul>
-    <li>Un brochure y un argumentario del 9-oct con el nombre interno, precios y la paleta coral y verde.</li>
+    <li>Un brochure y un argumentario (una guía de argumentos de venta) del 9-oct con el nombre interno, precios y la paleta coral y verde.</li>
     <li>La página pública de precios: se retiró el 30-oct.</li>
     <li>La política de privacidad publicada: describe el producto anterior.</li>
   </ul>
@@ -612,7 +795,7 @@
 <section class="salto">
   <div class="antetitulo">9</div>
   <h2>Qué <em>no prometer</em></h2>
-  <p class="bajada">La lista vive en el kit del vendedor y está revisada contra el programa. Aquí va en lenguaje de publicidad.</p>
+  <p class="bajada">La lista vive en el kit del vendedor, que es el set de documentos con que se prepara cada vendedor, y está revisada contra el programa. Aquí va en lenguaje de publicidad.</p>
   <table>
     <tr><th>No digas</th><th>Di</th></tr>
     <tr><td>Que atiende garantizado las 24 horas, que nunca falla</td><td>«Atiende a cualquier hora.»</td></tr>
@@ -671,7 +854,7 @@
   </ol>
 
   <h3>4. Sitio web (hilo-rojo.cl)</h3>
-  <p><strong>Existe:</strong> la portada, la página para distribuidoras y las cuatro páginas de los hijos, con el copy alineado a lo que se puede prometer.<br>
+  <p><strong>Existe:</strong> la portada, la página para distribuidoras y las cuatro páginas de los hijos, con los textos ajustados a lo que se puede prometer.<br>
   <strong>Decidido:</strong> el titular, la bajada y la prueba; «en camino, sin fecha» con lista de espera; sin precios.<br>
   <strong>Abierto:</strong> el dominio (3-nov); el número de WhatsApp; el formulario de espera; el logo; la política de privacidad nueva; sacar la franja de cuatro cifras (decidido); preguntas frecuentes.</p>
   <ol>
@@ -688,11 +871,72 @@
     <li><strong>Avisos de cobro por WhatsApp</strong> sobre las cotizaciones ya aprobadas.</li>
     <li><strong>Instagram y Facebook como canal de atención</strong> del cliente: hay una conexión técnica, sin probar con clientes.</li>
     <li><strong>Un informe semanal de redes y anuncios</strong> por WhatsApp: prototipo apagado.</li>
-    <li><strong>Más rubros</strong> y más de un cliente en producción a partir de enero.</li>
+    <li><strong>Más rubros</strong> y más de un cliente usándolo de verdad a partir de enero.</li>
   </ul>
 </section>
 
-
+<section class="salto glosario">
+  <div class="antetitulo">11</div>
+  <h2>Glosario: <em>cada palabra difícil</em></h2>
+  <dl>
+    <div><dt>API</dt><dd>Conexión entre dos programas. Por ahí el WhatsApp de una empresa le pasa los mensajes al asistente.</dd></div>
+    <div><dt>Aplicación (app)</dt><dd>Programa que se instala en el celular.</dd></div>
+    <div><dt>Asistente</dt><dd>Programa que contesta el WhatsApp de una empresa.</dd></div>
+    <div><dt>Base de datos</dt><dd>Archivador digital donde quedan guardados los datos.</dd></div>
+    <div><dt>Bot</dt><dd>Programa que conversa solo. Va en el cuerpo de un texto, nunca en un titular.</dd></div>
+    <div><dt>Brochure</dt><dd>Hoja de presentación. La nuestra es de una página.</dd></div>
+    <div><dt>Canal</dt><dd>Medio por donde se habla con un cliente: WhatsApp, Instagram, una visita.</dd></div>
+    <div><dt>Canje</dt><dd>Entregar un vale y recibir lo que incluye.</dd></div>
+    <div><dt>Carrito</dt><dd>Lo que el cliente va pidiendo en el chat, con su total.</dd></div>
+    <div><dt>Catálogo</dt><dd>Lista de productos de una empresa, con presentaciones, precios y stock.</dd></div>
+    <div><dt>CLP</dt><dd>Pesos chilenos.</dd></div>
+    <div><dt>Código QR</dt><dd>Cuadrado de puntitos que se lee con la cámara del celular.</dd></div>
+    <div><dt>Comisión</dt><dd>Parte de la venta que recibe el vendedor.</dd></div>
+    <div><dt>Comprobante</dt><dd>Foto o archivo que muestra que se hizo una transferencia.</dd></div>
+    <div><dt>Consola</dt><dd>Página web con usuario y clave donde la empresa ve su información.</dd></div>
+    <div><dt>Copia de prueba</dt><dd>Versión del programa, con datos inventados, para ensayar.</dd></div>
+    <div><dt>Correo en frío</dt><dd>Correo a una empresa que no nos conoce ni nos lo pidió.</dd></div>
+    <div><dt>Cotización</dt><dd>Presupuesto con productos, cantidades y total. No es una factura.</dd></div>
+    <div><dt>Demo</dt><dd>Prueba en vivo para que un posible cliente vea cómo funciona.</dd></div>
+    <div><dt>Despacho</dt><dd>Preparar y repartir los pedidos. También, el equipo que lo hace.</dd></div>
+    <div><dt>Difusión masiva</dt><dd>Mandar el mismo mensaje a muchas personas.</dd></div>
+    <div><dt>Distribuidora o mayorista</dt><dd>Compra en cantidad a los fabricantes y vende a otros negocios.</dd></div>
+    <div><dt>Dominio</dt><dd>Dirección de un sitio en internet, como hilo-rojo.cl.</dd></div>
+    <div><dt>Encargado</dt><dd>Responsable de un área del equipo.</dd></div>
+    <div><dt>Escalación</dt><dd>Cuando un problema sin resolver sube al jefe.</dd></div>
+    <div><dt>Función extra</dt><dd>Algo que se suma aparte al asistente de WhatsApp.</dd></div>
+    <div><dt>Hashtag</dt><dd>Palabra con # que agrupa publicaciones en redes sociales.</dd></div>
+    <div><dt>IA (inteligencia artificial)</dt><dd>Programas que entienden lo que la gente escribe o dice y contestan con frases normales.</dd></div>
+    <div><dt>Inducción</dt><dd>Preparación de una persona nueva.</dd></div>
+    <div><dt>Inventario</dt><dd>Saber cuánto hay de cada producto, contándolo.</dd></div>
+    <div><dt>IVA</dt><dd>Impuesto a las ventas.</dd></div>
+    <div><dt>Lista de espera</dt><dd>Formulario para pedir que te avisen cuando un producto exista.</dd></div>
+    <div><dt>Mensualidad</dt><dd>Lo que se paga cada mes, como una suscripción.</dd></div>
+    <div><dt>Meta</dt><dd>La empresa dueña de WhatsApp.</dd></div>
+    <div><dt>Módulo</dt><dd>Parte del asistente que se enciende o se apaga por separado.</dd></div>
+    <div><dt>Orden de compra</dt><dd>Cuando el cliente confirma que quiere comprar una cotización aprobada.</dd></div>
+    <div><dt>PDF</dt><dd>Archivo que se ve igual en cualquier teléfono o computador.</dd></div>
+    <div><dt>Piloto</dt><dd>Primera prueba con una empresa real.</dd></div>
+    <div><dt>Pieza</dt><dd>Cada cosa que se publica o se entrega: un folleto, un mensaje, una publicación.</dd></div>
+    <div><dt>Píxel (px)</dt><dd>El puntito más chico de una pantalla.</dd></div>
+    <div><dt>Plantilla</dt><dd>Modelo ya armado que se rellena.</dd></div>
+    <div><dt>Plataforma</dt><dd>Programa por internet donde varias personas atienden el mismo WhatsApp.</dd></div>
+    <div><dt>Proyección</dt><dd>Estimación de lo que podría pasar.</dd></div>
+    <div><dt>Prototipo</dt><dd>Primera versión para probar una idea. No está en uso.</dd></div>
+    <div><dt>Puesta en marcha</dt><dd>El trabajo de dejarlo andando, que se hace una vez.</dd></div>
+    <div><dt>Pyme</dt><dd>Empresa pequeña o mediana.</dd></div>
+    <div><dt>Rubro</dt><dd>Tipo de negocio: aseo, ferretería, gimnasio.</dd></div>
+    <div><dt>RUT</dt><dd>Número que identifica a una persona o empresa ante los impuestos en Chile.</dd></div>
+    <div><dt>SII</dt><dd>Servicio de Impuestos Internos, el organismo de impuestos en Chile.</dd></div>
+    <div><dt>SpA</dt><dd>Sociedad por acciones: un tipo de empresa en Chile.</dd></div>
+    <div><dt>Spam</dt><dd>Correo no deseado. Muchos correos van a parar a esa bandeja.</dd></div>
+    <div><dt>Stock</dt><dd>Cuánto queda de un producto.</dd></div>
+    <div><dt>Terreno</dt><dd>Trabajo fuera de la oficina, por ejemplo en un evento.</dd></div>
+    <div><dt>Transferencia</dt><dd>Pago de una cuenta bancaria a otra.</dd></div>
+    <div><dt>UF</dt><dd>Unidad chilena que sube con la inflación.</dd></div>
+    <div><dt>US$</dt><dd>Dólares de Estados Unidos.</dd></div>
+  </dl>
+</section>
 
 </body>
 </html>
