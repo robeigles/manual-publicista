@@ -110,7 +110,7 @@
   <p><strong>El problema.</strong> Un martes a las 21:10 el administrador de un edificio pide 10 bidones de cloro. La vendedora salió a las 18:00 y lo lee al otro día, a las 9:15. Para entonces él ya le compró a otro.</p>
   <p><strong>Lo que pasa con Hilo Rojo.</strong></p>
   <ol>
-    <li>El cliente pregunta el precio en el WhatsApp de siempre. No instala nada.</li>
+    <li>El cliente pregunta el precio en el WhatsApp de siempre, por escrito o con un audio. No instala nada.</li>
     <li>El asistente le contesta con los precios de la empresa y arma la <strong>cotización</strong>: el presupuesto con productos, cantidades y total.</li>
     <li><strong>Un vendedor de la empresa la revisa y la aprueba.</strong> Sin esa aprobación, no sale.</li>
     <li>El cliente recibe la cotización en el mismo chat.</li>
@@ -204,13 +204,14 @@
     <h3>1. Precio y carrito en el chat <span class="estado">hoy</span></h3>
     <p><strong>El problema.</strong> Un cliente quiere saber cuánto sale un producto y escribe a la hora que puede. Si nadie le contesta, le compra a otro.</p>
     <ol class="pasos">
-      <li>El cliente escribe como le escribiría a un vendedor: «¿cuánto vale el cloro tradicional?». Puede venir mal escrito o ser un audio: el asistente transcribe los audios.</li>
+      <li>El cliente escribe como le escribiría a un vendedor: «¿cuánto vale el cloro tradicional?». Puede venir con faltas de ortografía. También puede ser un audio, aunque esté mal hablado: el asistente lo escucha y lo pasa a texto.</li>
       <li>El asistente busca en el <strong>catálogo</strong> de la empresa, que es su lista de productos.</li>
       <li>Contesta con el producto y sus presentaciones, que son los formatos en que se vende, como el bidón de 5 litros. También muestra <strong>tres listas de precio juntas</strong> (detalle con IVA, por mayor y especial) y el stock.</li>
       <li>Si el cliente pide cantidades, el asistente las suma a un <strong>carrito</strong> en el mismo chat y muestra el total. Es como el carrito de una tienda en línea: junta lo que el cliente va pidiendo.</li>
     </ol>
+    <p>Además conversa con un <strong>nivel de humanidad</strong>: contesta con frases normales, como lo haría una persona.</p>
     <p><strong>Qué cambia para el dueño.</strong> Su negocio contesta a cualquier hora con sus propios precios. Nadie tiene que buscar la lista y copiar líneas a mano.</p>
-    <dl class="ficha"><dt>Sirve en</dt><dd>Distribuidoras de aseo, envases, ferretería, insumos dentales y veterinarios, licores, textil, repuestos, agro.</dd></dl>
+    <dl class="ficha"><dt>Sirve en</dt><dd>Distribuidoras de aseo, envases y embalajes, ferretería, material eléctrico, iluminación, oficina y librería, insumos dentales y veterinarios, repostería, licores, textil, ropa de trabajo y seguridad industrial, repuestos, agro. También negocios que toman pedidos por WhatsApp: restoranes con comida para llevar, panaderías y pastelerías, tiendas de mascotas, botillerías, carnicerías, verdulerías, florerías, imprentas y cualquier otro que venda con una lista de precios.</dd></dl>
     <div class="fila tres">
       <figure><img src="imagenes/foto-precio.png" alt="Chat: el cliente pregunta un precio y el asistente muestra tres listas y el stock"><figcaption>El cliente pregunta; el asistente contesta con las tres listas y el stock.</figcaption></figure>
       <figure><img src="imagenes/foto-carrito.png" alt="Chat: el asistente agrega productos a la cotización y muestra el total parcial"><figcaption>«Agregado a tu cotización», con el total parcial.</figcaption></figure>
@@ -245,7 +246,8 @@
       <li>Un vendedor de la empresa revisa el pago y lo marca como pagado en la consola.</li>
       <li>Entonces se le avisa a quien reparte, con el destino.</li>
     </ol>
-    <p><strong>No hay pago con tarjeta en esta parte</strong>, y el asistente no emite facturas ni boletas: eso lo sigue haciendo la empresa donde lo hace hoy.</p>
+    <p><strong>No hay pago con tarjeta en esta parte.</strong></p>
+    <p><strong>Factura y boleta.</strong> El asistente también puede emitirlas, sólo que no por su cuenta: lo hace conectándose a la API del sistema de ventas de la empresa, lo que también se llama CRM. Una API es una conexión entre dos programas (sección 4). El documento queda hecho en ese sistema. Sin esa conexión, la empresa lo sigue haciendo donde lo hace hoy.</p>
     <p><strong>Qué cambia para el dueño.</strong> El pago y el comprobante quedan junto a la cotización, en la misma conversación. Quienes despachan, es decir, quienes preparan y reparten el pedido, se enteran sin que nadie les reenvíe nada.</p>
     <figure style="max-width:260px"><img src="imagenes/ilus-comprobante.png" alt="Ilustración: el cliente manda el comprobante y el asistente confirma que lo recibió"><figcaption>Ilustración: así se ve en WhatsApp. Texto del asistente tomado del programa.</figcaption></figure>
   </div>
@@ -715,7 +717,7 @@
     <tr><td>«Reemplaza a tu vendedor» (sí vale «no reemplaza a tu vendedor»)</td><td>La promesa es justamente que un vendedor aprueba.</td></tr>
     <tr><td>Nombres de la competencia</td><td>No se pelea con nombres en una pieza pública.</td></tr>
     <tr><td>«Chatbot»</td><td>Suena a juguete. Se dice «asistente».</td></tr>
-    <tr><td>Funciones que no existen: pedido mínimo, lista de precios por cliente, validar el RUT, repetir el pedido anterior, cupones, factura o boleta al SII, pago con tarjeta, pedir un Uber o Rappi, leer el calendario del negocio</td><td>No están en el producto.</td></tr>
+    <tr><td>Funciones que no existen: pedido mínimo, lista de precios por cliente, validar el RUT, repetir el pedido anterior, cupones, factura o boleta sin un sistema de ventas conectado, pago con tarjeta, pedir un Uber o Rappi, leer el calendario del negocio</td><td>No están en el producto.</td></tr>
   </table>
   <h3>Lo abierto</h3>
   <div class="simple">
@@ -802,7 +804,7 @@
     <tr><td>Que ya hay empresas que lo usan, o testimonios</td><td>«Estamos instalando con las primeras empresas.»</td></tr>
     <tr><td>Que cumple la ley de datos</td><td>«Los datos van aislados por cliente.»</td></tr>
     <tr><td>Que vende solo, que cierra ventas, que reemplaza al vendedor</td><td>«Un vendedor tuyo aprueba antes de que salga el PDF.»</td></tr>
-    <tr><td>Que factura, emite boletas o cobra con tarjeta</td><td>Emite cotizaciones; la factura se hace donde se hace hoy; el pago es por transferencia.</td></tr>
+    <tr><td>Que factura o emite boletas por su cuenta, o que cobra con tarjeta</td><td>Emite cotizaciones. La factura y la boleta salen conectándose a la API del sistema de ventas de la empresa. El pago es por transferencia.</td></tr>
     <tr><td>Que funciona en Instagram, Facebook o por correo</td><td>«Hoy el canal es WhatsApp.»</td></tr>
     <tr><td>Precios distintos para cada cliente, pedido mínimo, cupones, repetir el último pedido</td><td>Tres listas de precio para todos: detalle, mayor y especial.</td></tr>
     <tr><td>Que lee la planilla en vivo, el correo o el calendario del negocio</td><td>El catálogo se carga y se actualiza cada mañana.</td></tr>
@@ -897,6 +899,7 @@
     <div><dt>Copia de prueba</dt><dd>Versión del programa, con datos inventados, para ensayar.</dd></div>
     <div><dt>Correo en frío</dt><dd>Correo a una empresa que no nos conoce ni nos lo pidió.</dd></div>
     <div><dt>Cotización</dt><dd>Presupuesto con productos, cantidades y total. No es una factura.</dd></div>
+    <div><dt>CRM</dt><dd>Programa donde una empresa lleva sus clientes y sus ventas.</dd></div>
     <div><dt>Demo</dt><dd>Prueba en vivo para que un posible cliente vea cómo funciona.</dd></div>
     <div><dt>Despacho</dt><dd>Preparar y repartir los pedidos. También, el equipo que lo hace.</dd></div>
     <div><dt>Difusión masiva</dt><dd>Mandar el mismo mensaje a muchas personas.</dd></div>
